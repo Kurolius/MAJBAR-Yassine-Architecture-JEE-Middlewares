@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un nouveau patient</title>
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">Ajouter un nouveau patient</div>
+            <div class="card-body">
+                <form method="post" th:action="@{/admin/save}">
+                    <div class="form-group mt-2">
+                        <label class="control-label">Nom</label>
+                        <input class="form-control" name="nom" type="text" th:required="required" th:value="${patient.nom}">
+                        <span th:errors="${patient.nom}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Date de Naissance</label>
+                        <input class="form-control" name="dateNaissance" type="date" th:required="required"
+                               th:value="${patient.dateNaissance}">
+                        <span th:errors="${patient.dateNaissance}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Malade</label>
+                        <input name="malade" type="checkbox" th:checked="${patient.malade}" >
+                        <span th:errors="${patient.malade}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Score</label>
+                        <input class="form-control" name="score" type="number" th:value="${patient.score}" th:required="required">
+                        <span th:errors="${patient.score}" class="text-danger"></span>
+                    </div>
+                    <div class="mt-4">
+                        <a class="btn btn-outline-primary" th:href="@{/user/index(id=${patient.id}, keyword=${keyword}, page=${page})}">
+                            <i class="fas fa-arrow-alt-circle-left"></i>
+                        </a>
+                        <button type="submit" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
