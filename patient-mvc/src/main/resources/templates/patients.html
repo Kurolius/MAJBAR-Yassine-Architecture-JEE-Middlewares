@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Patients Management</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">liste des patients</div>
+            <div class="card-body">
+                <form method="get" th:action="@{/user/index}">
+                    <label>Chercher un patient :</label>
+                    <input type="text" name="keyword" placeholder="Nom du patient" th:value="${keyword}">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </form>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><i class="fas fa-id-card"></i> ID</th>
+                        <th><i class="fas fa-file-user"></i> Nom</th>
+                        <th><i class="fas fa-calendar-alt"></i> Date de Naissance</th>
+                        <th><i class="fas fa-heartbeat"></i> Malade</th>
+                        <th><i class="far fa-star"></i> Score</th>
+                        <th><i class="fas fa-users-cog"></i> Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="p:${listPatients}">
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${p.nom}"></td>
+                        <td th:text="${p.dateNaissance}"></td>
+                        <td th:text="${p.malade}"></td>
+                        <td th:text="${p.score}"></td>
+                        <td>
+                            <a onclick="return confirm('Etes-vous sur de supprimer ce patient?')" class="btn btn-outline-danger"
+                               th:href="@{/admin/delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}"><i class="fas fa-trash-alt"></i></a>
+                            <a class="btn btn-outline-warning"
+                               th:href="@{/admin/edit(id=${p.id})}"><i class="fas fa-user-edit"></i></a>
+                            <a class="btn btn-outline-info"
+                               th:href="@{/admin/patient(id=${p.id})}"><i class="fas fa-list"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <ul class="nav nav-pills">
+                    <li th:each="page,status:${pages}">
+                        <a th:class="${status.index==currentPage?'btn btn-primary ms-1':'btn btn-outline-primary ms-1'}"
+                           th:text="${status.index}"
+                           th:href="@{/user/index(page=${status.index},keyword=${keyword})}"></a>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills">
+                    <li>
+                        <a class="btn btn-outline-primary mt-4" th:href="@{/formPatient}"><i class="fas fa-user-plus"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

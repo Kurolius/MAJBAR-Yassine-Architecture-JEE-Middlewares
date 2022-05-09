@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier patient</title>
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">Modifier patient</div>
+            <div class="card-body">
+                <form th:action="@{/admin/save}" method="post">
+                    <div class="form-group mt-2">
+                        <label class="control-label">ID : </label><label th:text="${patient.id}"></label>
+                        <input class="form-control" type="hidden"  name="id" th:required="required"
+                               th:value="${patient.id}">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Nom : </label>
+                        <input class="form-control" type="text" name="nom" th:required="required"
+                               th:value="${patient.nom}">
+                        <span class="text-danger" th:errors="${patient.nom}"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Date de naissance : </label>
+                        <input class="form-control" type="date" name="dateNaissance" th:required="required"
+                               th:value="${patient.dateNaissance}">
+                        <span class="text-danger" th:errors="${patient.dateNaissance}"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Malade : </label><br>
+                        <input type="radio" id="true" name="malade" value="true" th:value="${patient.malade}">
+                        <label for="true">Oui</label><br>
+                        <input type="radio" id="false" name="malade" value="false" th:value="${patient.malade}">
+                        <label for="true">Non</label><br>
+                        <span class="text-danger" th:errors="${patient.malade}"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Score : </label>
+                        <input class="form-control" type="number" name="score" th:required="required"
+                               th:value="${patient.score}">
+                        <span class="text-danger" th:errors="${patient.score}"></span>
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-outline-primary"><i class="fas fa-save"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
