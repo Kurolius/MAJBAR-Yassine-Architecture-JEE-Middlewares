@@ -1,4 +1,4 @@
-﻿# Activité pratique N°6
+﻿# Activité pratique N°7
 ## (Technologie Web JEE : http, Servlet, JSP, MVC Spring MVC,Thymeleaf) </br> Partie 2
 ### Introduction
 Dans ce travail on va continuer dans le développement web avec le framework Spring et notamment son outil Spring Boot, et on va illustrer l’Architecture Web JEE avec le design pattern Spring MVC, et on va expérimenter cette architecture avec un rendu coté serveur avec le générateur de template Thymeleaf, aussi on va initier la sécurité avec Spring Security avec un système d’authentification.
