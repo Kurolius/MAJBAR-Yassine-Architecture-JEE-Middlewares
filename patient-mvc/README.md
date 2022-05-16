@@ -10,7 +10,9 @@ Chaque patient est défini par :
 - Sa Date de naissance
 - Un attribut qui indique si le patient est malade ou non
 - Un score de type int
+
 ![image](https://user-images.githubusercontent.com/84138772/168592844-85df7f74-5741-471c-8209-74bfed87e596.png)
+
 Les données sont stockées dans une base de données H2 ou MySQL
 ### Le modèle conceptuel de données de l’application :
 ![image](https://user-images.githubusercontent.com/84138772/168593035-aa2ccc0a-c751-4177-9391-b207afe58568.png)
